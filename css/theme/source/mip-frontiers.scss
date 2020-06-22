@@ -1,0 +1,133 @@
+/**
+ * MIP-Frontiers theme for reveal.js.
+ *
+ * Based on the white theme by Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url(fonts/source-sans-pro/source-sans-pro.css);
+@import url('https://fonts.googleapis.com/css?family=Merriweather:400,700,400italic,700italic&display=swap');
+
+$themeColor: #1155CC;
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #fff;
+
+$mainColor: #222;
+$headingColor: $themeColor;
+
+$mainFontSize: 34px;
+$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
+//$headingFont: 'Source Sans Pro', Helvetica, sans-serif;
+//$headingFont: 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;
+$headingFont: 'Merriweather', serif;
+
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: none;
+$headingFontWeight: 600;
+$linkColor: #2a76dd;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 2.5em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+/*********************************************
+ * MIP-FRONTIERS THEME
+ *********************************************/
+
+.reveal {
+  p {
+    text-align: left;
+  }
+  ul, ol {
+    display: block;
+  }
+}
+
+li::marker {
+  color: $themeColor;
+}
+
+section.has-dark-background {
+  &, h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+  }
+}
+
+$footerHeight: $mainFontSize * 2;
+$footerVPadding: 6px;
+$footerHPadding: 4px;
+
+.reveal footer {
+  width: 100%;
+  box-sizing: border-box;
+  height: $footerHeight;
+  padding: $footerVPadding $footerHPadding;
+  margin: 0;
+  border-top: 2px solid $themeColor;
+  text-align: left;
+
+  transition-property: color, border-color, opacity;
+  transition-duration: 800ms;
+
+  &.hidden {
+	display: none;
+  }
+
+  .footer-logo {
+	height: $footerHeight - 2 * $footerVPadding;
+	margin: 0;
+  }
+
+  p {
+	font-size: 60%;
+	margin: 0;
+  }
+}
+
+.has-dark-background footer {
+  border-color: #fff;
+  color: #fff;
+
+  .footer-logo {
+	filter: brightness(0) invert(1);
+	transition: filter 800ms;
+  }
+}
+
+/* Filler to prevent the content from running into the footer. */
+.reveal .slides section {
+  &::after {
+	content: '';
+	display: block;
+	height: $footerHeight;
+  }
+
+  &[data-state=no-footer]::after {
+	display: none;
+  }
+}
+
+.reveal .slides > footer {
+  position: absolute;
+  bottom: 0;
+}
+
+.no-footer .reveal .slides > footer {
+  opacity: 0;
+}

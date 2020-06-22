@@ -8,7 +8,7 @@
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+		<link rel="stylesheet" href="dist/theme/mip-frontiers.css" id="theme">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
@@ -16,8 +16,57 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<footer class="hidden">
+					<img src="assets/mip-frontiers/logo.svg" alt="MIP-Frontiers" class="footer-logo">
+				</footer>
+
+				<section class="center">
+					<div style="margin-bottom: 60px;">
+					<img src="assets/mip-frontiers/logo.svg" alt="MIP-Frontiers" style="width: 400px">
+					</div>
+
+					<h1>Title</h1>
+					<div>Authors</div>
+
+					<footer class="custom-footer hidden">
+						<img src="assets/mip-frontiers/eu-logo.svg" alt="EU Flag" class="footer-logo" style="float: left; margin-right: 10px;">
+						<p>This project has received funding from the European Union's Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie grant agreement No. 765068.</p>
+					</footer>
+				</section>
+
+				<section>
+					<h2>A list</h2>
+					<ul>
+						<li>Foo</li>
+						<li>Bar
+							<ul>
+								<li>Ham</li>
+								<li>Spam</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section class="center" data-transition="slide-in fade-out">
+					<h2>Here's some math</h2>
+					\[\begin{align*}
+					\mathcal{SW}_2(\mu,\nu)&=\int_{\theta\in\mathbb{S}^{d-1}} \mathcal{W}_2(\theta^\top\mu,\theta^\top\nu) \\[2ex]
+					\max\mathcal{SW}_2(\mu,\nu)&=\max_{\theta\in\mathbb{S}^{d-1}} \mathcal{W}_2(\theta^\top\mu,\theta^\top\nu)
+					\end{align*}\]
+				</section>
+
+				<section class="center" data-background="#222" data-background-transition="zoom" data-transition="fade-in slide-out">
+					<h2>Dark background works too</h2>
+					\[\begin{align*}
+					\mathcal{SW}_2(\mu,\nu)&=\int_{\theta\in\mathbb{S}^{d-1}} \mathcal{W}_2(\theta^\top\mu,\theta^\top\nu) \\[2ex]
+					\max\mathcal{SW}_2(\mu,\nu)&=\max_{\theta\in\mathbb{S}^{d-1}} \mathcal{W}_2(\theta^\top\mu,\theta^\top\nu)
+					\end{align*}\]
+				</section>
+
+				<section data-state="no-footer">
+					<h2>No footer</h2>
+					<p>This slide has no footer.</p>
+				</section>
 			</div>
 		</div>
 
@@ -25,16 +74,46 @@
 		<script src="plugin/notes/notes.js"></script>
 		<script src="plugin/markdown/markdown.js"></script>
 		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/math/math.js"></script>
 		<script>
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
+				progress: true,
+				controls: true,
+				center: false,
 
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath ],
+
+				math: {
+					mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+					config: 'TeX-AMS_HTML-full',
+				},
 			});
+
+			function updateFooter(event) {
+				// If there was a custom footer, remove it and display the default one.
+			  const oldCustomFooter = document.querySelector('.reveal .slides > footer.custom-footer');
+				if (event.previousSlide && oldCustomFooter) {
+					oldCustomFooter.classList.add('hidden');
+					event.previousSlide.append(oldCustomFooter);
+				}
+	      document.querySelector('.reveal .slides > footer').classList.remove('hidden');
+
+				// If there is a new custom footer, display it.
+				const customFooter = event.currentSlide.querySelector('footer.custom-footer');
+				if (customFooter) {
+				  document.querySelector('.reveal .slides > footer').classList.add('hidden');
+					document.querySelector('.reveal .slides').prepend(customFooter);
+					customFooter.classList.remove('hidden');
+				}
+			}
+
+			Reveal.on('ready', updateFooter);
+			Reveal.on('slidechanged', updateFooter);
 		</script>
 	</body>
 </html>
