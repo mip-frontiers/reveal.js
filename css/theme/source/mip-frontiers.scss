@@ -86,17 +86,18 @@ $footerHPadding: 4px;
   transition-duration: 800ms;
 
   &.hidden {
-	display: none;
+    display: none;
   }
 
   .footer-logo {
-	height: $footerHeight - 2 * $footerVPadding;
-	margin: 0;
+    height: $footerHeight - 2 * $footerVPadding;
+    margin: 0;
+    transition: filter 800ms;
   }
 
   p {
-	font-size: 60%;
-	margin: 0;
+    font-size: 60%;
+    margin: 0;
   }
 }
 
@@ -105,27 +106,30 @@ $footerHPadding: 4px;
   color: #fff;
 
   .footer-logo {
-	filter: brightness(0) invert(1);
-	transition: filter 800ms;
+    filter: brightness(0) invert(1);
   }
 }
 
 /* Filler to prevent the content from running into the footer. */
 .reveal .slides section {
   &::after {
-	content: '';
-	display: block;
-	height: $footerHeight;
+    content: '';
+    display: block;
+    height: $footerHeight;
   }
 
   &[data-state=no-footer]::after {
-	display: none;
+    display: none;
   }
 }
 
 .reveal .slides > footer {
   position: absolute;
   bottom: 0;
+}
+
+.reveal .slides section footer.custom-footer {
+  display: none;
 }
 
 .no-footer .reveal .slides > footer {

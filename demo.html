@@ -43,7 +43,7 @@
 						<small><a href="https://github.com/mip-frontiers/reveal.js">MIP-Frontiers theme</a></small>
 					</p>
 
-					<footer class="custom-footer hidden">
+					<footer class="custom-footer">
 						<img src="assets/mip-frontiers/eu-logo.svg" alt="EU Flag" class="footer-logo" style="float: left; margin-right: 10px;">
 						<p>This project has received funding from the European Union's Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie grant agreement No. 765068.</p>
 					</footer>
@@ -472,19 +472,17 @@ Reveal.on( 'customevent', function() {
 
 			function updateFooter(event) {
 				// If there was a custom footer, remove it and display the default one.
-			  const oldCustomFooter = document.querySelector('.reveal .slides > footer.custom-footer');
+				const oldCustomFooter = document.querySelector('.reveal .slides > footer.custom-footer');
 				if (event.previousSlide && oldCustomFooter) {
-					oldCustomFooter.classList.add('hidden');
 					event.previousSlide.append(oldCustomFooter);
 				}
-	      document.querySelector('.reveal .slides > footer').classList.remove('hidden');
+				document.querySelector('.reveal .slides > footer').classList.remove('hidden');
 
 				// If there is a new custom footer, display it.
 				const customFooter = event.currentSlide.querySelector('footer.custom-footer');
 				if (customFooter) {
-				  document.querySelector('.reveal .slides > footer').classList.add('hidden');
+					document.querySelector('.reveal .slides > footer').classList.add('hidden');
 					document.querySelector('.reveal .slides').prepend(customFooter);
-					customFooter.classList.remove('hidden');
 				}
 			}
 
