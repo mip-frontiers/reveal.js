@@ -312,6 +312,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   .reveal footer .footer-logo {
     height: 56px;
     margin: 0;
+    margin-right: 10px;
     transition: filter 800ms; }
   .reveal footer p {
     font-size: 60%;

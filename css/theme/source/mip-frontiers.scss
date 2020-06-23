@@ -92,6 +92,7 @@ $footerHPadding: 4px;
   .footer-logo {
     height: $footerHeight - 2 * $footerVPadding;
     margin: 0;
+    margin-right: 10px;
     transition: filter 800ms;
   }
 
